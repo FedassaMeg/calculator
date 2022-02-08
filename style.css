@@ -6,6 +6,7 @@ html, body {
 }
 
 .body {
+  background-color: #ADE8F4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +14,8 @@ html, body {
 }
 
 .calculator {
-  background-color: lightgrey;
+  border-radius: 16px;
+  background-color: #03045E;
   padding: 10px;
   width: 300px;
   height: 440px;
@@ -23,29 +25,23 @@ html, body {
   grid-template-areas: 
     "d d d d"
     "d d d d"
-    ". . . o"
-    "seven eight nine o"
-    "four five six o"
-    "one two three o"
-    "zero . . o";
+    "c c ce add"
+    "seven eight nine sub"
+    "four five six mult"
+    "one two three div"
+    "dot zero e e";
 }
 
-/*
-    "d d d d"
-    "d d d d"
-    "c c . a"
-    "7 8 9 s"
-    "4 5 6 d"
-    "1 2 3 m"
-    "0 . e e";
-}*/
-
 .calculator > * {
-  background-color: #3eaf76;
+  background-color: #0077B6;
 }
 
 .display {
+  border-radius: 8px;
   grid-area: d;
+  padding: 10px;
+  background-color: #023E8A;
+  margin-bottom: 8px;
 }
 
 .inputs {
@@ -62,12 +58,28 @@ html, body {
   font-weight: bold;
   font-family: sans-serif;
   text-align: end;
+  text-shadow: 0 0 0.2em rgb(7, 7, 7);
 }
 
-.operator-buttons {
-  grid-area: o;
+
+button {
+  border-radius: 4px;
+  color: white;
+  font-size: 22px;
+  font-weight: 900;
+  text-shadow: 0 0 0.2em rgb(7, 7, 7);
 }
 
+
+
+
+
+
+
+
+.footer {
+  padding: 10px;
+}
 
 /* this can't be good */
 .one {
@@ -108,4 +120,36 @@ html, body {
 
 .zero {
   grid-area: zero;
+}
+
+.dot {
+  grid-area: dot;
+}
+
+.clear {
+  grid-area: c;
+}
+
+.clear-e {
+  grid-area: ce;
+}
+
+.equals {
+  grid-area: e;
+}
+
+.add {
+  grid-area: add;
+}
+
+.sub {
+  grid-area: sub;
+}
+
+.mult {
+  grid-area: mult;
+}
+
+.div {
+  grid-area: div;
 }
