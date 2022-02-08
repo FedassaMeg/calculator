@@ -23,11 +23,11 @@ html, body {
   grid-template-areas: 
     "d d d d"
     "d d d d"
-    "n n n o"
-    "n n n o"
-    "n n n o"
-    "n n n o"
-    "n n n o";
+    ". . . o"
+    "seven eight nine o"
+    "four five six o"
+    "one two three o"
+    "zero . . o";
 }
 
 /*
@@ -64,10 +64,48 @@ html, body {
   text-align: end;
 }
 
-.num-buttons {
-  grid-area: n;
-}
-
 .operator-buttons {
   grid-area: o;
+}
+
+
+/* this can't be good */
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+.four {
+  grid-area: four;
+}
+
+.five {
+  grid-area: five;
+}
+
+.six {
+  grid-area: six;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.zero {
+  grid-area: zero;
 }
