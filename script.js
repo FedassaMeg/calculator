@@ -24,9 +24,12 @@ buttonList.forEach((button) => {
 });
 
 function logTest (e) {
-  currentNum = Number(e.target.textContent);
+  currentNum = e.target.textContent;
   console.log(currentNum);
-  inputs.textContent = currentNum;
+  inputs.textContent += currentNum;
+
+
+  
   // console.log(e.target.className);
   // console.log(e.target.textContent)
 };
