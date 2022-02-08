@@ -1,0 +1,6 @@
+html, body {
+  box-sizing: border-box; /* this makes the page fit so you don't have to scroll a tiny bit  */
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
