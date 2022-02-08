@@ -1,2 +1,2 @@
 # calculator
-a simple calculator for The Odin Project
+a simple calculator for The Odin Project.
