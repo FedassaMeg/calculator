@@ -4,3 +4,70 @@ html, body {
   padding: 0px;
   margin: 0px;
 }
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calculator {
+  background-color: lightgrey;
+  padding: 10px;
+  width: 300px;
+  height: 440px;
+  display: grid;
+  grid-template: repeat(7, 1fr) / repeat(4, 1fr);
+  grid-gap: 4px;
+  grid-template-areas: 
+    "d d d d"
+    "d d d d"
+    "n n n o"
+    "n n n o"
+    "n n n o"
+    "n n n o"
+    "n n n o";
+}
+
+/*
+    "d d d d"
+    "d d d d"
+    "c c . a"
+    "7 8 9 s"
+    "4 5 6 d"
+    "1 2 3 m"
+    "0 . e e";
+}*/
+
+.calculator > * {
+  background-color: #3eaf76;
+}
+
+.display {
+  grid-area: d;
+}
+
+.inputs {
+  font-size: 2em;
+}
+
+.output {
+  font-size: 2.3em;
+}
+
+.inputs,
+.output {
+  color: rgb(247, 247, 247);
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: end;
+}
+
+.num-buttons {
+  grid-area: n;
+}
+
+.operator-buttons {
+  grid-area: o;
+}
