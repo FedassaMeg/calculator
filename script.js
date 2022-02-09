@@ -46,6 +46,7 @@ function calculate(e) {
     symbol = e.target.className
     console.log(`the current operator is ${e.target.className}`);
   }
+  
   // if the input is a number, and the first number and operator already exist
   if (input.includes('num') && firstNum && symbol) {
     secondNum += e.target.textContent;
@@ -61,7 +62,6 @@ function calculate(e) {
     inputs.textContent = '';
   }
  
-
   // if all the operands and operator exist, and = is clicked, run this switch to calculate the result and display it
   if (input.includes('equals') && firstNum && secondNum && symbol) {
   switch (symbol) {
@@ -94,17 +94,4 @@ function calculate(e) {
   // display it as result (or result AND firstNum if op was used and not =)
   
 
-};
-
-
-  // console.log(e.target.className);
-  // console.log(e.target.textContent)
-
-
-
-
-function displayNum() {
-  // when a num button is pressed
-  // assign the corresponding num to a value
-  // make the display show the value 
 };
