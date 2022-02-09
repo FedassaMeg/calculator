@@ -46,7 +46,7 @@ function calculate(e) {
     symbol = e.target.className
     console.log(`the current operator is ${e.target.className}`);
   }
-  
+
   // if the input is a number, and the first number and operator already exist
   if (input.includes('num') && firstNum && symbol) {
     secondNum += e.target.textContent;
@@ -89,9 +89,4 @@ function calculate(e) {
       console.log(`Sorry, we encountered a bug.`);
     }
   };
-  // if op has a value and a num is clicked, assign it to secondNum
-  // when an op or = is clicked after 2 #s exist, 
-  // display it as result (or result AND firstNum if op was used and not =)
-  
-
 };
