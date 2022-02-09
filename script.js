@@ -23,7 +23,7 @@ buttonList.forEach((button) => {
   button.addEventListener('click', calculate);
 });
 
-function calculate (e) {
+function calculate(e) {
   // this function is a series of ifs that progress the stages of calcultor use
   // the ifs check if the first operand, second operand, or operator exist to determine what to execute
 
@@ -62,7 +62,7 @@ function calculate (e) {
   }
  
 
-
+  // if all the operands and operator exist, and = is clicked, run this switch to calculate the result and display it
   if (input.includes('equals') && firstNum && secondNum && symbol) {
   switch (symbol) {
     case 'add':
