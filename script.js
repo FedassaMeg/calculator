@@ -6,6 +6,7 @@ let sub = (a, b) => a - b;
 let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 
+// this many global vars has to be bad
 let inputs = document.querySelector('.inputs');
 let output = document.querySelector('.output');
 let firstNum = '';
