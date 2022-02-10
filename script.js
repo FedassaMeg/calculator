@@ -1,4 +1,5 @@
 // I need to refactor everything into sub funcs because calculate() is way too long
+// and there's tons of repeated code.
 
 let add = (a, b) => a + b;
 let sub = (a, b) => a - b;
@@ -96,32 +97,31 @@ function calculate(e) {
  
   // if all the operands and operator exist, and = is clicked, run this switch to calculate the result and display it
   if (input.includes('equals') && firstNum && secondNum && symbol) {
+    answer = returnTruncAnswer();
+    output.textContent = answer;
+  };
+};
+
+function returnTruncAnswer() {
+  let result = '';
   switch (symbol) {
     case 'add':
-      answer = operate(add, Number(firstNum), Number(secondNum));
-      console.log(answer);
-      output.textContent = answer;
+      result = operate(add, Number(firstNum), Number(secondNum));
       break;
     case 'sub':
-      answer = operate(sub, Number(firstNum), Number(secondNum));
-      console.log(answer);
-      output.textContent = answer;
+      result = operate(sub, Number(firstNum), Number(secondNum));
       break;
     case 'multiply':
-      answer = operate(multiply, Number(firstNum), Number(secondNum));
-      console.log(answer);
-      output.textContent = answer;
+      result = operate(multiply, Number(firstNum), Number(secondNum));
       break;
     case 'divide':
-      answer = operate(divide, Number(firstNum), Number(secondNum));
-      answer = answer.toFixed(3);
-      console.log(answer);
-      output.textContent = answer;
+      result = operate(divide, Number(firstNum), Number(secondNum));
       break;
     default:
       console.log(`Sorry, we encountered a bug.`);
     }
-  };
+   result = parseFloat(result.toFixed(4));
+   return result;
 };
 
 
