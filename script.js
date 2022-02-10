@@ -1,3 +1,5 @@
+// I need to refactor everything into sub funcs because calculate() is way too long
+
 let add = (a, b) => a + b;
 let sub = (a, b) => a - b;
 let multiply = (a, b) => a * b;
@@ -27,7 +29,8 @@ function calculate(e) {
   // this function is a series of ifs that progress the stages of calcultor use
   // the ifs check if the first operand, second operand, or operator exist to determine what to execute
 
-  let input = e.target.className
+  let input = e.target.className;
+  let inputText = e.target.textContent;
 
   // if the input was a number button, and the second number and operator don't exist:
   if (input.includes('num') && !secondNum && !symbol) {
@@ -36,11 +39,11 @@ function calculate(e) {
     inputs.textContent = firstNum;
   };
 
-  // if the input was an operator button:
+  // if the input was an operator button and the first num exists but not secondNum:
   if (!input.includes('num') && firstNum && !secondNum) {
-    if (symbol) {
+    if (symbol) { // if symbol exists, replace it
       inputs.textContent = inputs.textContent.replace(/.$/,e.target.textContent);
-    } else {
+    } else { // if symbol doesn't exist, append it
       inputs.textContent += e.target.textContent;
     }
     symbol = e.target.className
@@ -55,12 +58,41 @@ function calculate(e) {
   }
 
   if (e.target.className.includes('clear')) {
+    answer = '';
     output.textContent = '';
     symbol = '';
     firstNum = '';
     secondNum = '';
     inputs.textContent = '';
   }
+
+  // if you press an operator after there's an answer, make the answer num1 and clear everything else
+  // if (answer && input.includes('add')) {
+  if (answer && /sub|add|multiply|divide/.test(e.target.className)) {
+    console.log('cleared via operator input');
+    // replace with callback
+    output.textContent = '';
+    inputs.textContent = '';
+    symbol = input;
+    firstNum = answer;
+    answer = 0;
+    secondNum = '';
+    inputs.textContent = firstNum;
+    inputs.textContent += inputText;
+  }
+
+  // if you press a number after there's an answer, clear everything and set that e.# to the first num
+  if (input.includes('num') && answer) {
+    console.log('num post answer');
+    answer = '';
+    output.textContent = '';
+    symbol = '';
+    firstNum = '';
+    secondNum = '';
+    inputs.textContent = '';
+    firstNum += e.target.textContent;
+    inputs.textContent = firstNum;
+  };
  
   // if all the operands and operator exist, and = is clicked, run this switch to calculate the result and display it
   if (input.includes('equals') && firstNum && secondNum && symbol) {
@@ -82,6 +114,7 @@ function calculate(e) {
       break;
     case 'divide':
       answer = operate(divide, Number(firstNum), Number(secondNum));
+      answer = answer.toFixed(3);
       console.log(answer);
       output.textContent = answer;
       break;
@@ -90,3 +123,5 @@ function calculate(e) {
     }
   };
 };
+
+
