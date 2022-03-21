@@ -1,5 +1,21 @@
 // I need to refactor everything into sub funcs because calculate() is way too long
 // and there's tons of repeated code.
+const publisher = () => {
+  const map = {
+    calculate: [returnTruncAnswer],
+  };
+
+  return {
+    emit(eventType) {
+      const list = map[eventType];
+      list.forEach((func) => func());
+    },
+    subcribe(eventType, funtionHandler) {
+      const list = [...map[eventType], functionHandler];
+      map.eventType = list;
+    },
+  };
+};
 
 let add = (a, b) => a + b;
 let sub = (a, b) => a - b;
@@ -15,9 +31,14 @@ let symbol = '';
 let answer = 0;
 let displayEq = '';
 
+let state = "firstNum"; //first, opertator, second, equals, 
+
+const pub = publisher();
+
 // operate gets called when the = button is clicked
 // this is a requirement of the homework assignment so I have to use it
 function operate(operator, operand1, operand2) {
+  console.log(operand1, operand1)
   return operator(operand1, operand2);
 };
 
@@ -35,14 +56,16 @@ function calculate(e) {
   let inputText = e.target.textContent;
 
   // if the input was a number button, and the second number and operator don't exist:
-  if (input.includes('num') && !secondNum && !symbol) {
+  // if (input.includes('num') && !secondNum && !symbol) {
+  if (state === "firstNum") {
     firstNum += e.target.textContent;
     console.log(firstNum);
     inputs.textContent = firstNum;
+    state = "operator";
   };
 
   // if the input was an operator button and the first num exists but not secondNum:
-  if (!input.includes('num') && firstNum && !secondNum) {
+  if (!input.includes('num') && state === "operator") {
     if (symbol) { // if symbol exists, replace it
       inputs.textContent = inputs.textContent.replace(/.$/,e.target.textContent);
     } else { // if symbol doesn't exist, append it
@@ -50,13 +73,15 @@ function calculate(e) {
     }
     symbol = e.target.className
     console.log(`the current operator is ${e.target.className}`);
+    state = "secondNum"
   }
 
   // if the input is a number, and the first number and operator already exist
-  if (input.includes('num') && firstNum && symbol) {
+  if (input.includes('num') && state === "secondNum") {
     secondNum += e.target.textContent;
     console.log(secondNum);
     inputs.textContent += e.target.textContent;
+    state = "calculate"
   }
 
   if (e.target.className.includes('clear')) {
@@ -66,6 +91,7 @@ function calculate(e) {
     firstNum = '';
     secondNum = '';
     inputs.textContent = '';
+    state = "firstNum";
   }
 
   // if you press an operator after there's an answer, make the answer num1 and clear everything else
@@ -97,9 +123,10 @@ function calculate(e) {
   };
  
   // if all the operands and operator exist, and = is clicked, run this switch to calculate the result and display it
-  if (input.includes('equals') && firstNum && secondNum && symbol) {
-    answer = returnTruncAnswer();
-    output.textContent = answer;
+  if (input.includes('equals') && state === "calculate") {
+    // answer = returnTruncAnswer();
+    pub.emit("calculate")
+    
   };
 };
 
@@ -122,7 +149,8 @@ function returnTruncAnswer() {
       console.log(`Sorry, we encountered a bug.`);
     }
    result = parseFloat(result.toFixed(4));
-   return result;
+   output.textContent = result;
 };
+pub.subcribe("calculate", returnTruncAnswer);
 
 
